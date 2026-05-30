@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fan Forum – AllThingsFootie.co.uk</title>
+  <meta name="description" content="Join the AllThingsFootie fan forum. Discuss matches, transfers, predictions and more with fellow football fans." />
+  <meta property="og:title" content="Fan Forum – AllThingsFootie.co.uk" />
+  <meta property="og:description" content="England's best football fan forum. Discuss everything football." />
+  <meta property="og:type" content="website" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#37003c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-dark" data-page="forum">
+
+  <!-- HEADER (same as index) -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-inner">
+          <span class="header-date" id="headerDate"></span>
+          <div class="header-top-links">
+            <a href="index.html#newsletter">Newsletter</a>
+            <a href="index.html#premium" class="premium-link">⚡ Go Premium</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <div class="header-main-inner">
+          <div class="logo-wrap">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">⚽</span>
+              <div class="logo-text">
+                <span class="logo-title">AllThingsFootie</span>
+                <span class="logo-domain">.co.uk</span>
+              </div>
+            </a>
+          </div>
+          <nav class="main-nav" id="mainNav">
+            <ul>
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="index.html#news" class="nav-link">News</a></li>
+              <li><a href="forum.html" class="nav-link active">Forum</a></li>
+              <li><a href="index.html#clubs" class="nav-link">Clubs</a></li>
+              <li><a href="index.html#match-centre" class="nav-link">Match Centre</a></li>
+            </ul>
+          </nav>
+          <div class="header-actions">
+            <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+            <button class="btn-login" id="loginBtn">Sign In</button>
+            <button class="btn-register" id="registerBtn">Join Free</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 LIVE</div>
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- FORUM HERO -->
+  <div class="forum-hero">
+    <div class="container">
+      <h1>⚽ AllThingsFootie Fan Forum</h1>
+      <p>Join thousands of fans debating, predicting, and celebrating the beautiful game</p>
+      <div class="forum-hero-stats" id="forumHeroStats"></div>
+    </div>
+  </div>
+
+  <!-- FORUM MAIN -->
+  <main class="forum-main">
+    <div class="container">
+      <div class="forum-layout">
+
+        <!-- FORUM CONTENT -->
+        <div class="forum-content">
+
+          <!-- New Thread Bar -->
+          <div class="new-thread-bar">
+            <input type="text" placeholder="Start a new discussion…" id="newThreadInput" />
+            <select id="newThreadCategory">
+              <option value="general">General Football</option>
+              <option value="transfers">Transfers</option>
+              <option value="match">Match Thread</option>
+              <option value="predictions">Predictions</option>
+              <option value="analysis">Analysis</option>
+              <option value="banter">Banter</option>
+            </select>
+            <button class="btn-primary" id="newThreadBtn">Post</button>
+          </div>
+
+          <!-- Forum Board Navigation -->
+          <div class="forum-boards" id="forumBoards"></div>
+
+          <!-- Active Board Threads -->
+          <div class="forum-threads-wrap" id="forumThreadsWrap">
+            <div class="threads-header">
+              <h2 id="activeBoardTitle">General Football Discussion</h2>
+              <div class="thread-sort">
+                <button class="sort-btn active" data-sort="hot">🔥 Hot</button>
+                <button class="sort-btn" data-sort="new">🆕 New</button>
+                <button class="sort-btn" data-sort="top">⬆️ Top</button>
+              </div>
+            </div>
+            <div class="thread-list" id="threadList"></div>
+            <button class="btn-load-more" id="loadMoreThreads">Load More Threads</button>
+          </div>
+
+          <!-- Thread View (shown when thread clicked) -->
+          <div class="thread-view hidden" id="threadView">
+            <button class="back-btn" id="backToForum">← Back to Forum</button>
+            <div class="thread-full" id="threadFull"></div>
+            <div class="reply-section">
+              <h3>Join the Conversation</h3>
+              <textarea placeholder="Add your reply… keep it respectful!" id="replyInput" rows="4"></textarea>
+              <button class="btn-primary" id="submitReplyBtn">Post Reply</button>
+            </div>
+            <div class="replies-list" id="repliesList"></div>
+          </div>
+        </div>
+
+        <!-- FORUM SIDEBAR -->
+        <aside class="forum-sidebar">
+
+          <!-- Online Now -->
+          <div class="sidebar-widget">
+            <div class="widget-header"><h3>👥 Online Now</h3></div>
+            <div class="online-list" id="onlineList"></div>
+          </div>
+
+          <!-- Top Contributors -->
+          <div class="sidebar-widget">
+            <div class="widget-header"><h3>🏅 Top Contributors</h3></div>
+            <div class="contributor-list" id="contributorList"></div>
+          </div>
+
+          <!-- Hot Club Topics -->
+          <div class="sidebar-widget">
+            <div class="widget-header"><h3>🔥 Club Topics</h3></div>
+            <div class="club-topics" id="clubTopics"></div>
+          </div>
+
+          <!-- Match Prediction Widget -->
+          <div class="sidebar-widget">
+            <div class="widget-header"><h3>🎯 Predict This Week</h3></div>
+            <div class="prediction-widget" id="predictionWidget"></div>
+          </div>
+
+          <!-- Forum Rules -->
+          <div class="sidebar-widget rules-widget">
+            <div class="widget-header"><h3>📋 Forum Rules</h3></div>
+            <ol class="rules-list">
+              <li>Respect all fans</li>
+              <li>No hate speech or discrimination</li>
+              <li>Keep transfers to the right board</li>
+              <li>Match threads stay on topic</li>
+              <li>No spam or self-promotion</li>
+              <li>Source your rumours</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2024 AllThingsFootie.co.uk · <a href="mailto:salatrir@gmail.com">salatrir@gmail.com</a> · <a href="index.html#privacy">Privacy</a> · <a href="index.html#terms">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALS (same as index) -->
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="loginModal">✕</button>
+      <h2>Sign In to AllThingsFootie</h2>
+      <div class="form-group"><input type="text" placeholder="Username or Email" id="loginUser" /></div>
+      <div class="form-group"><input type="password" placeholder="Password" id="loginPass" /></div>
+      <button class="btn-primary btn-full" id="loginSubmit">Sign In</button>
+      <p class="modal-switch">No account? <button class="link-btn" id="switchToRegister">Join Free</button></p>
+    </div>
+  </div>
+  <div class="modal" id="registerModal">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="registerModal">✕</button>
+      <h2>Join AllThingsFootie</h2>
+      <div class="form-group"><input type="text" placeholder="Username" id="regUsername" /></div>
+      <div class="form-group"><input type="email" placeholder="Email" id="regEmail" /></div>
+      <div class="form-group"><input type="password" placeholder="Password" id="regPass" /></div>
+      <div class="form-group"><select id="regFavClub"><option value="">Favourite Club</option></select></div>
+      <button class="btn-primary btn-full" id="registerSubmit">Create Account</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="profile-panel" id="profilePanel">
+    <div class="profile-panel-inner">
+      <button class="panel-close" id="profileClose">✕</button>
+      <div class="profile-header" id="profileHeader"></div>
+      <div class="profile-stats" id="profileStats"></div>
+      <div class="profile-badges" id="profileBadges"></div>
+      <button class="btn-danger" id="logoutBtn">Sign Out</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="forum.js"></script>
+</body>
+</html>

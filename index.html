@@ -1,27 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AllThingsFootie.co.uk</title>
-<meta name="description" content="English Football Community">
-<meta property="og:title" content="AllThingsFootie.co.uk">
-<meta property="og:description" content="English Football Community">
-<link rel="manifest" href="manifest.json">
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#0f172a;color:#fff}
-header,footer{background:#1e293b;padding:20px;text-align:center}
-section{max-width:1000px;margin:auto;padding:20px}
-.card{background:#1e293b;padding:15px;border-radius:10px;margin:10px 0}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AllThingsFootie.co.uk – English Football Community</title>
+  <meta name="description" content="The ultimate English football fan community. News, forums, match analysis, transfer rumours, predictions, club communities and more." />
+  <meta name="keywords" content="English football, Premier League, fan forum, football news, transfer rumours, match analysis" />
+  <meta name="author" content="AllThingsFootie.co.uk" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AllThingsFootie.co.uk – English Football Community" />
+  <meta property="og:description" content="The ultimate hub for English football fans. News, forums, match analysis, transfer rumours and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://allthingsfootie.co.uk" />
+  <meta property="og:image" content="https://allthingsfootie.co.uk/assets/og-image.jpg" />
+  <meta property="og:site_name" content="AllThingsFootie.co.uk" />
+
+  <!-- Twitter/X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AllThingsFootie.co.uk" />
+  <meta name="twitter:description" content="English football community – news, forums, analysis and fan content." />
+  <meta name="twitter:image" content="https://allthingsfootie.co.uk/assets/og-image.jpg" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AllThingsFootie.co.uk",
+    "url": "https://allthingsfootie.co.uk",
+    "description": "English football fan community with news, forums, and analysis",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://allthingsfootie.co.uk/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#37003c" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<header><h1>AllThingsFootie.co.uk</h1><p>The Home of English Football Fans</p></header>
-<section>
-<div class="card">Latest Football News</div>
-<div class="card">Club Communities: Arsenal, Chelsea, Liverpool, Manchester City, Manchester United, Tottenham</div>
-<div class="card">Fan Forum, Match Centre, Fan Blogs</div>
-</section>
-<footer>Contact: salatrir@gmail.com</footer>
+<body class="theme-dark" data-page="home">
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-inner">
+          <span class="header-date" id="headerDate"></span>
+          <div class="header-top-links">
+            <a href="#newsletter">Newsletter</a>
+            <a href="#premium" class="premium-link">⚡ Go Premium</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <div class="header-main-inner">
+          <div class="logo-wrap">
+            <a href="index.html" class="logo">
+              <span class="logo-icon">⚽</span>
+              <div class="logo-text">
+                <span class="logo-title">AllThingsFootie</span>
+                <span class="logo-domain">.co.uk</span>
+              </div>
+            </a>
+            <div class="logo-tagline">England's Football Community</div>
+          </div>
+          <nav class="main-nav" id="mainNav">
+            <ul>
+              <li><a href="index.html" class="nav-link active">Home</a></li>
+              <li class="has-dropdown">
+                <a href="#news" class="nav-link">News ▾</a>
+                <div class="dropdown">
+                  <a href="#transfers">Transfers</a>
+                  <a href="#matchday">Matchday</a>
+                  <a href="#analysis">Analysis</a>
+                  <a href="#opinion">Opinion</a>
+                </div>
+              </li>
+              <li><a href="forum.html" class="nav-link">Forum</a></li>
+              <li class="has-dropdown">
+                <a href="#clubs" class="nav-link">Clubs ▾</a>
+                <div class="dropdown clubs-dropdown" id="clubsDropdown"></div>
+              </li>
+              <li><a href="#match-centre" class="nav-link">Match Centre</a></li>
+              <li><a href="#fan-content" class="nav-link">Fan Content</a></li>
+              <li><a href="#writers" class="nav-link">Writers</a></li>
+            </ul>
+          </nav>
+          <div class="header-actions">
+            <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+            <button class="btn-login" id="loginBtn">Sign In</button>
+            <button class="btn-register" id="registerBtn">Join Free</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="search" placeholder="Search news, clubs, players, forums…" id="searchInput" />
+        <button class="search-close" id="searchClose">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BREAKING NEWS TICKER ===== -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 LIVE</div>
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- ===== HERO / FEATURED ===== -->
+  <section class="hero-section" id="featured">
+    <div class="container">
+      <div class="hero-grid">
+        <article class="hero-main" id="heroMain"></article>
+        <div class="hero-sidebar" id="heroSidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUICK STATS BAR ===== -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-bar-inner" id="statsBar"></div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+    <div class="container">
+      <div class="content-grid">
+
+        <!-- LEFT: News Feed -->
+        <section class="news-section" id="news">
+          <div class="section-header">
+            <h2>Latest News</h2>
+            <div class="news-tabs" id="newsTabs">
+              <button class="tab-btn active" data-tab="all">All</button>
+              <button class="tab-btn" data-tab="transfers">Transfers</button>
+              <button class="tab-btn" data-tab="match">Match</button>
+              <button class="tab-btn" data-tab="analysis">Analysis</button>
+              <button class="tab-btn" data-tab="opinion">Opinion</button>
+            </div>
+          </div>
+          <div class="news-feed" id="newsFeed"></div>
+          <button class="btn-load-more" id="loadMoreNews">Load More Stories</button>
+        </section>
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar">
+
+          <!-- League Table -->
+          <div class="sidebar-widget" id="leagueTable">
+            <div class="widget-header">
+              <h3>🏆 Premier League</h3>
+              <a href="#match-centre" class="widget-link">Full Table →</a>
+            </div>
+            <div class="table-wrap" id="leagueTableBody"></div>
+          </div>
+
+          <!-- Transfer Rumours -->
+          <div class="sidebar-widget" id="transferWidget">
+            <div class="widget-header">
+              <h3>🔄 Transfer Rumours</h3>
+              <a href="#transfers" class="widget-link">All Rumours →</a>
+            </div>
+            <div class="transfer-list" id="transferList"></div>
+          </div>
+
+          <!-- Top Forum Posts -->
+          <div class="sidebar-widget">
+            <div class="widget-header">
+              <h3>💬 Hot Forum Topics</h3>
+              <a href="forum.html" class="widget-link">All Forums →</a>
+            </div>
+            <div class="forum-list" id="sidebarForumList"></div>
+          </div>
+
+          <!-- Weekly Poll -->
+          <div class="sidebar-widget" id="pollWidget">
+            <div class="widget-header">
+              <h3>📊 Fan Poll</h3>
+            </div>
+            <div class="poll-wrap" id="pollWrap"></div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-widget newsletter-widget" id="newsletter">
+            <h3>📬 Get The Newsletter</h3>
+            <p>Weekly football digest straight to your inbox</p>
+            <div class="newsletter-form">
+              <input type="email" placeholder="your@email.com" id="newsletterEmail" />
+              <button class="btn-primary" id="newsletterSubmit">Subscribe</button>
+            </div>
+          </div>
+
+          <!-- Premium CTA -->
+          <div class="sidebar-widget premium-widget" id="premium">
+            <div class="premium-badge">⚡ PREMIUM</div>
+            <h3>Unlock AllThingsFootie Pro</h3>
+            <ul>
+              <li>✅ Ad-free experience</li>
+              <li>✅ Exclusive analysis</li>
+              <li>✅ Early transfer news</li>
+              <li>✅ Premium badge</li>
+              <li>✅ Direct writer access</li>
+            </ul>
+            <button class="btn-premium">Get Pro – £4.99/mo</button>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== MATCH CENTRE ===== -->
+  <section class="match-centre-section" id="match-centre">
+    <div class="container">
+      <div class="section-header">
+        <h2>⚽ Match Centre</h2>
+        <div class="match-tabs">
+          <button class="tab-btn active" data-match-tab="today">Today</button>
+          <button class="tab-btn" data-match-tab="tomorrow">Tomorrow</button>
+          <button class="tab-btn" data-match-tab="results">Results</button>
+          <button class="tab-btn" data-match-tab="fixtures">All Fixtures</button>
+        </div>
+      </div>
+      <div class="matches-grid" id="matchesGrid"></div>
+      <div class="match-stats-row" id="matchStatsRow"></div>
+    </div>
+  </section>
+
+  <!-- ===== CLUB COMMUNITIES ===== -->
+  <section class="clubs-section" id="clubs">
+    <div class="container">
+      <div class="section-header">
+        <h2>🏟️ Club Communities</h2>
+        <p>Find your tribe. Join the conversation.</p>
+      </div>
+      <div class="clubs-grid" id="clubsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== FAN FORUM PREVIEW ===== -->
+  <section class="forum-preview-section" id="forum-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>💬 Fan Forum</h2>
+        <a href="forum.html" class="btn-secondary">Enter Full Forum →</a>
+      </div>
+      <div class="forum-preview-grid" id="forumPreviewGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== FAN CONTENT & BLOGS ===== -->
+  <section class="fan-content-section" id="fan-content">
+    <div class="container">
+      <div class="section-header">
+        <h2>✍️ Fan Content & Blogs</h2>
+        <button class="btn-secondary" id="submitBlogBtn">Submit Your Blog</button>
+      </div>
+      <div class="fan-content-grid" id="fanContentGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== STUDENT JOURNALISTS ===== -->
+  <section class="writers-section" id="writers">
+    <div class="container">
+      <div class="section-header">
+        <h2>📝 Student Journalist Area</h2>
+        <p>Share your football analysis with the community</p>
+      </div>
+      <div class="writers-grid">
+        <div class="writers-profiles" id="writersProfiles"></div>
+        <div class="submission-form-wrap">
+          <h3>Submit an Article</h3>
+          <div class="submission-form" id="submissionForm">
+            <input type="text" placeholder="Article Title" id="articleTitle" />
+            <input type="text" placeholder="Your Name / Handle" id="articleAuthor" />
+            <select id="articleCategory">
+              <option value="">Select Category</option>
+              <option value="analysis">Match Analysis</option>
+              <option value="opinion">Opinion</option>
+              <option value="transfers">Transfer Talk</option>
+              <option value="history">Club History</option>
+              <option value="tactics">Tactical Breakdown</option>
+            </select>
+            <textarea placeholder="Write your article here… (min. 300 words)" id="articleBody" rows="8"></textarea>
+            <button class="btn-primary" id="submitArticleBtn">Submit Article</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEADERBOARD ===== -->
+  <section class="leaderboard-section" id="leaderboard">
+    <div class="container">
+      <div class="section-header">
+        <h2>🏅 Fan Leaderboard</h2>
+        <span class="week-label" id="weekLabel"></span>
+      </div>
+      <div class="leaderboard-grid" id="leaderboardGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== MERCH STORE PLACEHOLDER ===== -->
+  <section class="merch-section" id="merch">
+    <div class="container">
+      <div class="merch-banner">
+        <div class="merch-text">
+          <h2>🛒 AllThingsFootie Store</h2>
+          <p>Coming Soon – Fan merch, club gear, and exclusive ATF apparel</p>
+          <button class="btn-primary">Notify Me</button>
+        </div>
+        <div class="merch-decoration">⚽ 🏆 👕 🎽</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-about">
+          <div class="footer-logo">
+            <span>⚽</span> AllThingsFootie<span class="footer-domain">.co.uk</span>
+          </div>
+          <p>England's home for football fans. News, analysis, forums, and community since 2024.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📸</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="TikTok">♪</a>
+          </div>
+          <p class="footer-contact-line">📧 <a href="mailto:salatrir@gmail.com">salatrir@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>Football</h4>
+          <ul>
+            <li><a href="#news">Latest News</a></li>
+            <li><a href="#transfers">Transfer News</a></li>
+            <li><a href="#match-centre">Match Centre</a></li>
+            <li><a href="#clubs">Club Communities</a></li>
+            <li><a href="#leaderboard">Fan Leaderboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="forum.html">Fan Forum</a></li>
+            <li><a href="#fan-content">Fan Blogs</a></li>
+            <li><a href="#writers">Student Journalists</a></li>
+            <li><a href="#premium">Premium Membership</a></li>
+            <li><a href="#merch">Merch Store</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#advertise">Advertise</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 AllThingsFootie.co.uk. All rights reserved. Not affiliated with the Premier League or any club.</p>
+        <p>Contact: <a href="mailto:salatrir@gmail.com">salatrir@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="loginModal">✕</button>
+      <h2>Sign In to AllThingsFootie</h2>
+      <div class="form-group">
+        <input type="text" placeholder="Username or Email" id="loginUser" />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" id="loginPass" />
+      </div>
+      <button class="btn-primary btn-full" id="loginSubmit">Sign In</button>
+      <p class="modal-switch">No account? <button class="link-btn" id="switchToRegister">Join Free</button></p>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal" id="registerModal">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="registerModal">✕</button>
+      <h2>Join AllThingsFootie</h2>
+      <div class="form-group">
+        <input type="text" placeholder="Username" id="regUsername" />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" id="regEmail" />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" id="regPass" />
+      </div>
+      <div class="form-group">
+        <select id="regFavClub">
+          <option value="">Favourite Club</option>
+        </select>
+      </div>
+      <button class="btn-primary btn-full" id="registerSubmit">Create Account</button>
+      <p class="modal-switch">Already a member? <button class="link-btn" id="switchToLogin">Sign In</button></p>
+    </div>
+  </div>
+
+  <!-- Blog Submission Modal -->
+  <div class="modal" id="blogModal">
+    <div class="modal-box modal-wide">
+      <button class="modal-close" data-modal="blogModal">✕</button>
+      <h2>Submit Your Blog Post</h2>
+      <div class="form-group">
+        <input type="text" placeholder="Blog Title" id="blogTitle" />
+      </div>
+      <div class="form-group">
+        <select id="blogClub">
+          <option value="">Related Club (optional)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Write your blog post…" id="blogBody" rows="10"></textarea>
+      </div>
+      <button class="btn-primary" id="blogSubmit">Publish Post</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- User Profile Panel -->
+  <div class="profile-panel" id="profilePanel">
+    <div class="profile-panel-inner">
+      <button class="panel-close" id="profileClose">✕</button>
+      <div class="profile-header" id="profileHeader"></div>
+      <div class="profile-stats" id="profileStats"></div>
+      <div class="profile-badges" id="profileBadges"></div>
+      <div class="profile-saved" id="profileSaved"></div>
+      <button class="btn-danger" id="logoutBtn">Sign Out</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="forum.js"></script>
 </body>
 </html>
